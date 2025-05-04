@@ -1,0 +1,116 @@
+/**
+ * Common customer information field styles
+ * Used across all checkout themes
+ */
+
+/* Base row/column styles */
+.customer-info-section .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.customer-info-section [class*="col-"] {
+    position: relative;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+    .customer-info-section .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .customer-info-section .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .customer-info-section .col-md-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+}
+
+/* Base form control styles */
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-control, 
+.form-select {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus, 
+.form-select:focus {
+    outline: none;
+}
+
+.form-select {
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+/* Theme-specific styles */
+
+/* Modern theme */
+.theme-modern .form-label {
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.modern-form-control {
+    border-radius: 6px;
+    padding: 12px 15px;
+    border-color: #e0e0e0;
+}
+
+.modern-form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
+}
+
+/* Classic theme */
+.classic-form-control {
+    border-color: #ccc;
+}
+
+.classic-form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+}
+
+/* Minimalist theme */
+.minimalist-form-control {
+    border-color: #eee;
+}
+
+.minimalist-form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .customer-info-section .row {
+        display: block;
+    }
+    
+    .customer-info-section [class*="col-"] {
+        width: 100%;
+        max-width: 100%;
+    }
+}

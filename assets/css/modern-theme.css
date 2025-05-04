@@ -1,0 +1,974 @@
+:root {
+    --primary-color: #FF8D7A; /* Tom salmão */
+    --primary-light: #FFA799; /* Tom salmão mais claro */
+    --primary-dark: #E47A69; /* Tom salmão mais escuro */
+    --dark-bg: #121212; /* Fundo preto/escuro */
+    --dark-card: #1E1E1E; /* Cartões um pouco mais claros */
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    --text-light: #FFFFFF;
+    --text-muted: #BBBBBB;
+    --border-radius: 10px;
+}
+
+/* Base & Resets */
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    padding-top: 80px;
+}
+
+a {
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-light);
+    text-decoration: none;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(18, 18, 18, 0.9) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 141, 122, 0.2);
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-light) !important;
+    position: relative;
+    padding: 8px 15px;
+}
+
+.navbar-light .navbar-nav .nav-link:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navbar-light .navbar-nav .nav-link:hover:before,
+.navbar-light .navbar-nav .nav-link.active:before {
+    transform: scaleX(1);
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* REFINAMENTO DE TABELAS E HOVER */
+
+/* Correção crítica para textos em tabelas durante hover */
+.table tbody tr:hover td,
+.table tbody tr:hover th,
+.table tbody tr:hover a,
+.table-hover tbody tr:hover {
+    color: var(--text-light) !important;
+    background-color: rgba(255, 141, 122, 0.08) !important;
+}
+
+.table td, .table th {
+    color: var(--text-light);
+    border-color: rgba(255, 141, 122, 0.1);
+    vertical-align: middle;
+    padding: 16px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.table thead th {
+    color: var(--primary-color);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 141, 122, 0.2);
+    background-color: rgba(30, 30, 30, 0.7);
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* Correção do posicionamento do efeito de glow nos ícones */
+.stat-card-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    color: var(--primary-color);
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+/* Restaurar o efeito glow */
+.stat-card-icon::after {
+    content: ''; /* Restaurando o efeito glow */
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+    opacity: 0.15;
+    border-radius: 50%;
+    z-index: -1;
+    /* Posicionamento refinado do glow */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Também restaurar o glow para outras áreas */
+.icon-glow {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-glow::after {
+    content: ''; /* Restaurando o efeito glow */
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+    opacity: 0.15;
+    z-index: -1;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Efeito glow suave nos botões */
+.btn-primary:hover::before {
+    opacity: 0.2; /* Restaurando o glow dos botões */
+}
+
+/* Remover o efeito glow */
+.stat-card-icon::after {
+    content: none; /* Removendo o efeito glow */
+}
+
+/* Corrigir dropdown menus */
+.dropdown-menu {
+    background-color: var(--dark-card);
+    border: 1px solid rgba(255, 141, 122, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+    color: var(--text-light);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(255, 141, 122, 0.1);
+    color: var(--primary-color);
+}
+
+/* MODERNIZAÇÃO DE ÍCONES E EFEITOS */
+
+/* Ícones sem efeito glow */
+.icon-glow {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-glow::after {
+    content: none; /* Removendo o efeito glow */
+}
+
+/* Melhorar icones na tabela e cards */
+.table i, 
+.card i, 
+.stat-card i {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Badges aprimorados */
+.badge {
+    padding: 0.55em 0.9em;
+    border-radius: 50px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.7rem;
+}
+
+/* Efeitos de glass morphism aprimorados */
+.glass-effect {
+    background-color: rgba(30, 30, 30, 0.7) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Refinamentos de Cards e Containers */
+.dashboard-card, .stat-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(35, 35, 35, 0.8), rgba(25, 25, 25, 0.8)) !important;
+    border: 1px solid rgba(255, 141, 122, 0.15);
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover, .stat-card:hover {
+    border-color: rgba(255, 141, 122, 0.25);
+    transform: translateY(-3px);
+}
+
+/* Efeito de riscos sofisticados */
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 141, 122, 0.2) 15%, 
+        rgba(255, 141, 122, 0.4) 50%, 
+        rgba(255, 141, 122, 0.2) 85%, 
+        transparent 100%);
+}
+
+.card {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 141, 122, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 24px;
+}
+
+.card:hover {
+    box-shadow: 0 15px 35px rgba(255, 141, 122, 0.15);
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: rgba(30, 30, 30, 0.7) !important;
+    border-bottom: 1px solid rgba(255, 141, 122, 0.2);
+    color: var(--text-light);
+    padding: 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Forms */
+.form-control, .form-select {
+    background-color: rgba(18, 18, 18, 0.6);
+    border: 1px solid rgba(255, 141, 122, 0.3);
+    border-radius: var(--border-radius);
+    color: var(--text-light);
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(255, 141, 122, 0.25);
+    color: var(--text-light);
+}
+
+.form-label {
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.form-text {
+    color: var(--text-muted);
+}
+
+.form-check-input {
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 141, 122, 0.3);
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-label {
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.input-group-text {
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 141, 122, 0.3);
+    color: var(--text-light);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(45deg, 
+        var(--primary-color), 
+        var(--primary-light), 
+        var(--primary-color));
+    filter: blur(14px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, var(--primary-light), var(--primary-light));
+    transform: translateY(-3px);
+}
+
+.btn-primary:hover::before {
+    opacity: 0.2; /* Restaurando o glow dos botões */
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 141, 122, 0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-outline-primary {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color) !important;
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(255, 141, 122, 0.1);
+    border-color: var(--primary-light);
+    color: var(--primary-light) !important;
+}
+
+.btn-secondary {
+    background-color: var(--gray-600);
+    border-color: var(--gray-600);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: var(--gray-700);
+    border-color: var(--gray-700);
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover, .btn-success:focus {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover, .btn-danger:focus {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Tables */
+.table {
+    color: var(--text-light);
+}
+
+.table thead th {
+    background-color: rgba(30, 30, 30, 0.8);
+    color: var(--primary-color);
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 141, 122, 0.2);
+}
+
+.table td, .table th {
+    border-color: rgba(255, 141, 122, 0.1);
+    padding: 15px;
+    vertical-align: middle;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 1em;
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+.badge.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: var(--dark-bg) !important;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+/* Alerts */
+.alert {
+    background-color: var(--dark-card);
+    border-color: rgba(255, 141, 122, 0.2);
+    color: var(--text-light);
+    border-radius: var(--border-radius);
+    padding: 15px 20px;
+}
+
+.alert-success {
+    border-left: 5px solid #28a745;
+}
+
+.alert-danger {
+    border-left: 5px solid #dc3545;
+}
+
+.alert-warning {
+    border-left: 5px solid #ffc107;
+}
+
+.alert-info {
+    border-left: 5px solid #17a2b8;
+}
+
+/* Auth Forms */
+.auth-container {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    background-color: var(--dark-card);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 141, 122, 0.2);
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, rgba(255, 141, 122, 0.1), transparent);
+    z-index: 0;
+}
+
+.auth-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-container h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-links a {
+    color: var(--primary-color);
+}
+
+/* Dashboard Stats */
+.stat-card {
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(18, 18, 18, 0.8));
+    border: 1px solid rgba(255, 141, 122, 0.1);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::after {
+    content: none; /* Removendo o efeito circular */
+}
+
+.stat-card h3 {
+    color: var(--text-light);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.stat-card p {
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+/* Checkout Page */
+.checkout-container {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    margin: 60px auto;
+    max-width: 1000px;
+    border: 1px solid rgba(255, 141, 122, 0.2);
+}
+
+.product-info {
+    padding: 40px;
+    background-color: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.payment-form {
+    padding: 40px;
+    background-color: rgba(18, 18, 18, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-left: 1px solid rgba(255, 141, 122, 0.2);
+}
+
+.logo-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.price {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.description {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(18, 18, 18, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 141, 122, 0.1);
+    margin-top: auto;
+}
+
+footer p {
+    color: var(--text-muted);
+}
+
+/* Utilities */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.text-light {
+    color: var(--text-light) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* PIX and Card Payment Pages */
+.pix-container, .card-container {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 141, 122, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.pix-container::before, .card-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+}
+
+.qr-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 30px auto;
+    width: fit-content;
+}
+
+.pix-code {
+    background-color: rgba(18, 18, 18, 0.6);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    word-break: break-all;
+    font-family: monospace;
+    color: var(--text-light);
+}
+
+.credit-card {
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary-color)) !important;
+    border-radius: 15px;
+    padding: 25px;
+    color: var(--dark-bg) !important;
+    height: 200px;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(255, 141, 122, 0.3);
+    margin-bottom: 30px;
+}
+
+/* Success Page */
+.success-container {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 50px 40px;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.success-icon {
+    font-size: 80px;
+    color: #28a745;
+    margin-bottom: 30px;
+}
+
+.order-details {
+    background-color: rgba(18, 18, 18, 0.6);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: var(--dark-card);
+        padding: 15px;
+        border-radius: var(--border-radius);
+        margin-top: 10px;
+        border: 1px solid rgba(255, 141, 122, 0.2);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .checkout-container {
+        margin: 20px;
+    }
+    
+    .product-info, .payment-form {
+        padding: 25px;
+    }
+    
+    .stat-card h3 {
+        font-size: 24px;
+    }
+}
+
+/* Dark Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Correção de cores e contraste */
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-light) !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* Corrigir dropdown menus */
+.dropdown-menu {
+    background-color: var(--dark-card);
+    border: 1px solid rgba(255, 141, 122, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+    color: var(--text-light);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(255, 141, 122, 0.1);
+    color: var(--primary-color);
+}
+
+/* Corrigir texto em estados hover */
+a:hover, a:focus,
+.btn:hover, .btn:focus,
+.nav-link:hover, .nav-link:focus {
+    color: var(--primary-light) !important;
+}
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-primary:active {
+    color: var(--dark-bg) !important;
+}
+
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    color: var(--dark-bg) !important;
+}
+
+/* Garantir que as tabelas tenham cores corretas */
+.table tbody tr:hover {
+    color: var(--text-light) !important;
+}
+
+/* Dashboard cards e containers */
+.dashboard-card, 
+.stat-card {
+    background-color: var(--dark-card) !important;
+    border: 1px solid rgba(255, 141, 122, 0.2);
+}
+
+.card-header {
+    background-color: rgba(30, 30, 30, 0.7) !important;
+}
+
+/* Corrigir cores de links nas tabelas */
+.table a {
+    color: var(--primary-color);
+}
+
+.table a:hover {
+    color: var(--primary-light) !important;
+}
+
+/* Cores de texto consistentes */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.text-dark, .text-body {
+    color: var(--text-light) !important;
+}
+
+/* List groups no dashboard */
+.list-group-item {
+    background-color: var(--dark-card);
+    border-color: rgba(255, 141, 122, 0.1);
+    color: var(--text-light);
+}
+
+.list-group-item:hover {
+    background-color: rgba(30, 30, 30, 0.8);
+}
+
+.list-group-item-action:hover, .list-group-item-action:focus {
+    color: var(--primary-color);
+}
+
+/* Para botões outline que ficam pretos ao passar o mouse */
+.btn-outline-secondary {
+    color: var(--text-light);
+    border-color: var(--gray-600);
+}
+
+.btn-outline-secondary:hover, 
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active {
+    background-color: var(--gray-600);
+    border-color: var(--gray-600);
+    color: var(--text-light) !important;
+}
+
+/* Para botões de perigo e sucesso */
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+    color: var(--text-light) !important;
+}
+
+/* Página não encontrada */
+.text-danger {
+    color: #ff6b6b !important;
+}
+
+.text-success {
+    color: #51cf66 !important;
+}
+
+/* Borda fina salmão para elementos destacados */
+.card-highlight {
+    border-left: 3px solid var(--primary-color) !important;
+}
+
+/* Efeito de transparência acrílica para containers */
+.acrylic-bg {
+    background-color: rgba(30, 30, 30, 0.7) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Para containers específicos do dashboard */
+.dashboard-overview {
+    background-color: var(--dark-card) !important;
+    border-color: rgba(255, 141, 122, 0.1) !important;
+}
+
+/* Corrigir config do cartão de crédito no checkout */
+.credit-card {
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary-color)) !important;
+    color: var(--dark-bg) !important;
+}
+
+/* Corrigir botões nas páginas de checkout */
+.checkout-container .btn-primary {
+    color: var(--dark-bg) !important;
+}
+
+.checkout-container .btn-primary:hover {
+    color: var(--dark-bg) !important;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .table td, .table th {
+        padding: 12px 10px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+    }
+    
+    .dashboard-card, .stat-card {
+        padding: 15px;
+    }
+}
